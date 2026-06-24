@@ -47,10 +47,6 @@ void afficher (struct etudiants e[], int n)
 	fclose(liste_etudiants);
 }
 
-/* Compare deux etudiants selon le critere choisi :
-   critere = 1 -> comparaison par nom (ordre alphabetique)
-   critere = 2 -> comparaison par age
-   Renvoie : negatif si a vient avant b, 0 si egal, positif si a vient apres b */
 int comparer(struct etudiants a, struct etudiants b, int critere)
 {
 	if(critere == 1)
@@ -59,9 +55,6 @@ int comparer(struct etudiants a, struct etudiants b, int critere)
 		return a.age - b.age;
 }
 
-/* Tri a bulles generique, utilisable pour n'importe quel critere/type :
-   critere = 1 (nom) ou 2 (age)
-   type    = 1 (croissant) ou 2 (decroissant) */
 void trier(struct etudiants e[], int n, int critere, int type)
 {
 	int i, j, cmp;
@@ -72,9 +65,6 @@ void trier(struct etudiants e[], int n, int critere, int type)
 		for(j=0; j<n-1-i; j++)
 		{
 			cmp = comparer(e[j], e[j+1], critere);
-
-			/* croissant : on echange si e[j] est plus grand que e[j+1]
-			   decroissant : on echange si e[j] est plus petit que e[j+1] */
 			if((type==1 && cmp>0) || (type==2 && cmp<0))
 			{
 				temp = e[j];
@@ -94,8 +84,6 @@ void afficher_resultats(struct etudiants e[], int n, const char *titre)
 		printf("%d) %s %s - age:%d\n", i+1, e[i].nom, e[i].prenoms, e[i].age);
 	}
 }
-
-/* Affiche toutes les informations d'un etudiant */
 void afficher_fiche(struct etudiants e)
 {
 	printf("\nEtudiants trouvés :\n");
@@ -107,9 +95,6 @@ void afficher_fiche(struct etudiants e)
 	printf("Âge:%d\n", e.age);
 }
 
-/* Recherche generique : l'utilisateur choisit le champ (nom, prenoms, niveau, adresse,
-   date de naissance ou age), saisit la valeur connue, et on affiche la fiche complete
-   de chaque etudiant correspondant. */
 void rechercher(struct etudiants e[], int n, int champ)
 {
 	char recherche_str[30];
@@ -152,7 +137,6 @@ void rechercher(struct etudiants e[], int n, int champ)
 	}
 }
 
-/*Recherche un étudiant par son nom et permet de modifier un de ses champs*/
 void modif(struct etudiants e[], int n)
 {
 	char recherche_str[10];
